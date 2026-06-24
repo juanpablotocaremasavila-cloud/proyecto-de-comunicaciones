@@ -1,16 +1,11 @@
 /* backend/schema.sql */
 -- ============================================================
 -- MySQL schema for RC Soluciones
--- Compatible con XAMPP (MySQL 5.7+ / MariaDB 10.3+)
--- Ejecutar en phpMyAdmin o desde la terminal:
---   mysql -u root < schema.sql
+-- Clever Cloud MySQL 8.4 (addon: btnvghl93jqid9fdbeiy)
+-- La base de datos ya existe en Clever Cloud, no usar CREATE DATABASE.
+-- Ejecutar con:
+--   mysql -h HOST -u USER -p DB_NAME < schema.sql
 -- ============================================================
-
-CREATE DATABASE IF NOT EXISTS rc_soluciones
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE rc_soluciones;
 
 -- ────────────────────────────────────────────
 -- Tabla: categorías de ingreso / gasto

@@ -2,7 +2,10 @@
   "name": "rc-soluciones",
   "version": "0.1.0",
   "private": true,
+  "main": "backend/src/app.js",
   "scripts": {
+    "postinstall": "cd backend && npm install",
+    "start": "node backend/src/app.js",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",

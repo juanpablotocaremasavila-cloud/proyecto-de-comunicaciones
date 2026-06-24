@@ -1,19 +1,21 @@
 // backend/src/controllers/summaryController.js
 const pool = require('../config/db');
 
-// GET /api/summary — resumen financiero general
+// GET /api/summary — resumen financiero general (optimized: single connection)
 exports.getSummary = async (req, res) => {
+  let conn;
   try {
-    const [[incRow]] = await pool.execute(
+    conn = await pool.getConnection();
+    const [[incRow]] = await conn.execute(
       'SELECT COALESCE(SUM(amount), 0) AS total FROM incomes'
     );
-    const [[expRow]] = await pool.execute(
+    const [[expRow]] = await conn.execute(
       'SELECT COALESCE(SUM(amount), 0) AS total FROM expenses'
     );
-    const [[alertRow]] = await pool.execute(
+    const [[alertRow]] = await conn.execute(
       'SELECT COUNT(*) AS pending FROM alerts WHERE is_paid = 0'
     );
-    const [[goalRow]] = await pool.execute(
+    const [[goalRow]] = await conn.execute(
       'SELECT COUNT(*) AS total, COALESCE(SUM(saved_amount), 0) AS total_saved, COALESCE(SUM(target_amount), 0) AS total_target FROM goals'
     );
 
@@ -34,6 +36,8 @@ exports.getSummary = async (req, res) => {
   } catch (err) {
     console.error('GET /summary error:', err.message);
     res.status(500).json({ error: err.message });
+  } finally {
+    if (conn) conn.release();
   }
 };
 

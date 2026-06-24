@@ -9,16 +9,17 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// MySQL connection pool – reads credentials from .env (or defaults for XAMPP)
+// MySQL connection pool – reads credentials from .env (Clever Cloud)
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
+  host: process.env.DB_HOST || 'btnvghl93jqid9fdbeiy-mysql.services.clever-cloud.com',
   port: process.env.DB_PORT || 3306,
-  user: process.env.DB_USER || 'root',
+  user: process.env.DB_USER || 'uoocqh3it2ekh6g4',
   password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'rc_soluciones',
+  database: process.env.DB_NAME || 'btnvghl93jqid9fdbeiy',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
+  ssl: { rejectUnauthorized: false },
 });
 
 // Helper to run queries and handle errors uniformly

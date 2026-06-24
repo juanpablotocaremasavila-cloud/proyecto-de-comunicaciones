@@ -15,6 +15,7 @@ const alertRoutes    = require('./routes/alertRoutes');
 const goalRoutes     = require('./routes/goalRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const summaryRoutes  = require('./routes/summaryRoutes');
+const authRoutes     = require('./routes/authRoutes');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use((req, _res, next) => {
 });
 
 // ── API Routes ──
+app.use('/api/auth',       authRoutes);
 app.use('/api/incomes',    incomeRoutes);
 app.use('/api/expenses',   expenseRoutes);
 app.use('/api/alerts',     alertRoutes);
