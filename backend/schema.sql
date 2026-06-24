@@ -94,12 +94,12 @@ CREATE TABLE IF NOT EXISTS users (
 -- ────────────────────────────────────────────
 -- Índices para consultas frecuentes
 -- ────────────────────────────────────────────
-CREATE INDEX idx_incomes_date      ON incomes(date);
-CREATE INDEX idx_incomes_category  ON incomes(category_id);
-CREATE INDEX idx_expenses_date     ON expenses(date);
-CREATE INDEX idx_expenses_category ON expenses(category_id);
-CREATE INDEX idx_alerts_due_date   ON alerts(due_date);
-CREATE INDEX idx_goals_target_date ON goals(target_date);
+-- CREATE INDEX idx_incomes_date      ON incomes(date);
+-- CREATE INDEX idx_incomes_category  ON incomes(category_id);
+-- CREATE INDEX idx_expenses_date     ON expenses(date);
+-- CREATE INDEX idx_expenses_category ON expenses(category_id);
+-- CREATE INDEX idx_alerts_due_date   ON alerts(due_date);
+-- CREATE INDEX idx_goals_target_date ON goals(target_date);
 
 -- ────────────────────────────────────────────
 -- Vista: resumen financiero mensual
