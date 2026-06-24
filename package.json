@@ -4,13 +4,13 @@
   "private": true,
   "main": "backend/src/app.js",
   "scripts": {
-    "postinstall": "cd backend && npm install",
+    "postinstall": "cd backend && npm install && cd ../FincaHogar && npm install",
     "start": "node backend/src/app.js",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:frontend": "cd frontend && npm run dev",
+    "dev:frontend": "cd FincaHogar && npm run dev",
     "dev:backend": "cd backend && npm run dev",
     "start:backend": "cd backend && npm start",
-    "build": "cd frontend && npm run build"
+    "build": "cd FincaHogar && npm run build"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"

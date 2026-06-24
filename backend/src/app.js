@@ -42,9 +42,18 @@ app.use('/api/summary',    summaryRoutes);
 // ── Health check ──
 app.get('/api/ping', (_req, res) => res.json({ status: 'ok', msg: 'pong', timestamp: new Date() }));
 
-// ── 404 handler ──
-app.use((_req, res) => {
-  res.status(404).json({ error: 'Ruta no encontrada' });
+// ── Serve Frontend in Production ──
+const frontendPath = path.join(__dirname, '../../FincaHogar/dist');
+app.use(express.static(frontendPath));
+
+// Catch-all para React Router o devolver index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
+// ── 404 handler (API) ──
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ error: 'Ruta API no encontrada' });
 });
 
 // ── Error handler global ──
